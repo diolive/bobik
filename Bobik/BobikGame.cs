@@ -7,12 +7,12 @@ namespace Bobik
     /// <summary>
     ///     This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class BobikGame : Game
     {
         private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        public Game1()
+        public BobikGame()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -27,8 +27,8 @@ namespace Bobik
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            _graphics.PreferredBackBufferWidth = 1800;
-            _graphics.PreferredBackBufferHeight = 800;
+            _graphics.PreferredBackBufferWidth = AppSettings.WindowWidth;
+            _graphics.PreferredBackBufferHeight = AppSettings.WindowHeight;
             _graphics.ApplyChanges();
 
             base.Initialize();
