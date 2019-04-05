@@ -24,6 +24,8 @@ namespace Bobik
             Content.RootDirectory = "Content";
         }
 
+        private Subjects.Bobik TheBobik => _gameScene.Subjects.OfType<Subjects.Bobik>().Single();
+
         /// <summary>
         ///     Allows the game to perform any initialization it needs to before starting to run.
         ///     This is where it can query for any required services and load any non-graphic
@@ -53,7 +55,7 @@ namespace Bobik
 
             _gameScene = new Scene();
             _gameScene.Subjects.Add(new Sheet());
-            _gameScene.Subjects.Add(new Subjects.Bobik());
+            _gameScene.Subjects.Add(new Subjects.Bobik().At(100, 100));
         }
 
         /// <summary>
@@ -79,6 +81,19 @@ namespace Bobik
                 Exit();
 
             _gameScene.Update(gameTime);
+            var elapsed = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (keyboardState.IsKeyDown(Keys.Left))
+            {
+                TheBobik.Position -= new Vector2(elapsed * AppSettings.BobikVelocity, 0);
+                TheBobik.HFlipped = true;
+            }
+
+            if (keyboardState.IsKeyDown(Keys.Right))
+            {
+                TheBobik.Position += new Vector2(elapsed * AppSettings.BobikVelocity, 0);
+                TheBobik.HFlipped = false;
+            }
 
             base.Update(gameTime);
         }

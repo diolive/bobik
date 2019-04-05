@@ -5,9 +5,13 @@ namespace Bobik.Subjects
     public class Bobik : Subject
     {
         public Bobik()
+            : base(new Sprite(AssetStorage.Textures.Bobik))
         {
-            Sprite = new Sprite(AssetStorage.Textures.Bobik);
-            Position = new Vector2(100, 100);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
         }
     }
 }

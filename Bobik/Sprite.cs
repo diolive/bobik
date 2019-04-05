@@ -43,13 +43,25 @@ namespace Bobik
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 position)
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, bool hFlipped)
         {
             int xIndex = _currentFrame % _frameXCount;
             int yIndex = _currentFrame / _frameXCount;
 
-            spriteBatch.Draw(_texture, position,
-                new Rectangle(xIndex * _frameWidth, yIndex * _frameHeight, _frameWidth, _frameHeight), Color.White);
+            SpriteEffects effects = hFlipped
+                ? SpriteEffects.FlipHorizontally
+                : SpriteEffects.None;
+
+            spriteBatch.Draw(
+                _texture,
+                position,
+                new Rectangle(xIndex * _frameWidth, yIndex * _frameHeight, _frameWidth, _frameHeight),
+                Color.White,
+                0f,
+                Vector2.Zero,
+                Vector2.One,
+                effects,
+                0f);
         }
     }
 }

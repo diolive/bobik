@@ -13,7 +13,7 @@ namespace Bobik
         {
             foreach (Subject subject in Subjects)
             {
-                subject.Sprite.Update(gameTime);
+                subject.Update(gameTime);
             }
         }
 
@@ -22,7 +22,7 @@ namespace Bobik
             spriteBatch.DrawString(AssetStorage.Fonts.Primary, "test string", new Vector2(50, 100), Color.White);
             foreach (Subject subject in Subjects)
             {
-                subject.Sprite.Draw(spriteBatch, subject.Position);
+                subject.Draw(spriteBatch);
             }
         }
     }
