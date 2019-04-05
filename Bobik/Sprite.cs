@@ -11,6 +11,7 @@ namespace Bobik
         private readonly int _frameWidth;
         private readonly int _frameXCount;
         private readonly int _frameYCount;
+        private readonly Vector2 _origin;
         private readonly Texture2D _texture;
 
         private readonly TimeSpan _timeToFrame;
@@ -25,9 +26,12 @@ namespace Bobik
             _frameYCount = frameYCount;
             _frameWidth = texture.Width / _frameXCount;
             _frameHeight = texture.Height / _frameYCount;
+            _origin = new Vector2(texture.Width, texture.Height) / 2;
 
             _timeToFrame = TimeSpan.FromMilliseconds(60);
         }
+
+        public Vector2 Scale { get; set; } = Vector2.One;
 
         public void Update(GameTime gameTime)
         {
@@ -58,8 +62,8 @@ namespace Bobik
                 new Rectangle(xIndex * _frameWidth, yIndex * _frameHeight, _frameWidth, _frameHeight),
                 tintColor,
                 0f,
-                Vector2.Zero,
-                Vector2.One,
+                _origin,
+                Scale,
                 effects,
                 0f);
         }

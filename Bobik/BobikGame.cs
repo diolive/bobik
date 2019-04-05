@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-using Bobik.Subjects;
+﻿using Bobik.Scenes;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,7 +13,8 @@ namespace Bobik
     {
         private readonly GraphicsDeviceManager _graphics;
 
-        private Scene _gameScene;
+        private Scene _currentScene;
+        private Vector2 _screenCenter;
         private SpriteBatch _spriteBatch;
 
         public BobikGame()
@@ -23,8 +22,6 @@ namespace Bobik
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-
-        private Subjects.Bobik TheBobik => _gameScene.Subjects.OfType<Subjects.Bobik>().Single();
 
         /// <summary>
         ///     Allows the game to perform any initialization it needs to before starting to run.
@@ -34,10 +31,11 @@ namespace Bobik
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             _graphics.PreferredBackBufferWidth = AppSettings.WindowWidth;
             _graphics.PreferredBackBufferHeight = AppSettings.WindowHeight;
             _graphics.ApplyChanges();
+
+            _screenCenter = new Vector2(AppSettings.WindowWidth, AppSettings.WindowHeight) / 2;
 
             base.Initialize();
         }
@@ -53,10 +51,7 @@ namespace Bobik
 
             AssetStorage.LoadAssets(Content);
 
-            _gameScene = new Scene();
-            _gameScene.Subjects.Add(new Sheet());
-
-            _gameScene.Subjects.Add(new Subjects.Bobik().At(AppSettings.BobikInitialPosition));
+            _currentScene = new MenuScene(SetScene);
         }
 
         /// <summary>
@@ -81,25 +76,7 @@ namespace Bobik
                 keyboardState.IsKeyDown(Keys.Escape))
                 Exit();
 
-            _gameScene.Update(gameTime);
-            var elapsed = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
-            if (keyboardState.IsKeyDown(Keys.Left))
-            {
-                TheBobik.Position -= new Vector2(elapsed * AppSettings.BobikVelocity, 0);
-                TheBobik.HFlipped = true;
-            }
-
-            if (keyboardState.IsKeyDown(Keys.Right))
-            {
-                TheBobik.Position += new Vector2(elapsed * AppSettings.BobikVelocity, 0);
-                TheBobik.HFlipped = false;
-            }
-
-            if (keyboardState.IsKeyDown(Keys.Space))
-            {
-                TheBobik.Jump();
-            }
+            _currentScene.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -113,12 +90,15 @@ namespace Bobik
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-            _gameScene.Draw(_spriteBatch);
+            _currentScene.Draw(_spriteBatch);
             _spriteBatch.End();
 
-            Window.Title = TheBobik.VerticalVelocity.ToString();
-
             base.Draw(gameTime);
+        }
+
+        private void SetScene(Scene scene)
+        {
+            _currentScene = scene;
         }
     }
 }

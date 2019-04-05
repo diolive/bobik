@@ -2,10 +2,10 @@
 
 namespace Bobik.Subjects
 {
-    public class Bobik : Subject
+    public class Bobik : GravitySubject
     {
         public Bobik()
-            : base(new Sprite(AssetStorage.Textures.Bobik))
+            : base(new Sprite(AssetStorage.Textures.Bobik), AppSettings.BobikInitialPosition)
         {
             Dropped += () => IsJumping = false;
         }
