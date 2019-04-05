@@ -20,6 +20,8 @@ namespace Bobik
         public const float AtomDusyaPathHeight = 200f;
         public const float AtomDusyaPathRotation = (float)(Math.PI / 3);
         public const float AtomDusyaPhase = 0f;
+        public const float RotationScaleMultiplier = 0.5f;
+        public const float RotationScaleBase = 0.7f;
 
         public static Vector2 ScreenCenter { get; } = new Vector2(WindowWidth, WindowHeight) / 2;
         public static Vector2 BobikInitialPosition { get; } = new Vector2(100, 500);
