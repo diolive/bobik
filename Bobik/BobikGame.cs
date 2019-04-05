@@ -1,4 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Linq;
+
+using Bobik.Subjects;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -10,6 +14,8 @@ namespace Bobik
     public class BobikGame : Game
     {
         private readonly GraphicsDeviceManager _graphics;
+
+        private Scene _gameScene;
         private SpriteBatch _spriteBatch;
 
         public BobikGame()
@@ -44,6 +50,10 @@ namespace Bobik
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             AssetStorage.LoadAssets(Content);
+
+            _gameScene = new Scene();
+            _gameScene.Subjects.Add(new Sheet());
+            _gameScene.Subjects.Add(new Subjects.Bobik());
         }
 
         /// <summary>
@@ -62,11 +72,13 @@ namespace Bobik
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            KeyboardState keyboardState = Keyboard.GetState();
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-                Keyboard.GetState().IsKeyDown(Keys.Escape))
+                keyboardState.IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            _gameScene.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -80,7 +92,7 @@ namespace Bobik
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(AssetStorage.Fonts.Primary, "test string", new Vector2(50, 100), Color.White);
+            _gameScene.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);

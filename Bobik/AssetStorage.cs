@@ -8,6 +8,7 @@ namespace Bobik
         public static void LoadAssets(ContentManager contentManager)
         {
             Fonts.LoadAssets(contentManager);
+            Textures.LoadAssets(contentManager);
         }
 
         public static class Fonts
@@ -17,6 +18,18 @@ namespace Bobik
             public static void LoadAssets(ContentManager contentManager)
             {
                 Primary = contentManager.Load<SpriteFont>("Fonts/Primary");
+            }
+        }
+
+        public static class Textures
+        {
+            public static Texture2D Sheet { get; private set; }
+            public static Texture2D Bobik { get; private set; }
+
+            public static void LoadAssets(ContentManager contentManager)
+            {
+                Sheet = contentManager.Load<Texture2D>("Textures/sheet");
+                Bobik = contentManager.Load<Texture2D>("Textures/bobik");
             }
         }
     }
