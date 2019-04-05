@@ -55,7 +55,8 @@ namespace Bobik
 
             _gameScene = new Scene();
             _gameScene.Subjects.Add(new Sheet());
-            _gameScene.Subjects.Add(new Subjects.Bobik().At(100, 100));
+
+            _gameScene.Subjects.Add(new Subjects.Bobik().At(AppSettings.BobikInitialPosition));
         }
 
         /// <summary>
@@ -95,6 +96,11 @@ namespace Bobik
                 TheBobik.HFlipped = false;
             }
 
+            if (keyboardState.IsKeyDown(Keys.Space))
+            {
+                TheBobik.Jump();
+            }
+
             base.Update(gameTime);
         }
 
@@ -109,6 +115,8 @@ namespace Bobik
             _spriteBatch.Begin();
             _gameScene.Draw(_spriteBatch);
             _spriteBatch.End();
+
+            Window.Title = TheBobik.VerticalVelocity.ToString();
 
             base.Draw(gameTime);
         }

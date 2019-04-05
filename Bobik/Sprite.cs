@@ -43,7 +43,7 @@ namespace Bobik
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 position, bool hFlipped)
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, bool hFlipped, Color tintColor)
         {
             int xIndex = _currentFrame % _frameXCount;
             int yIndex = _currentFrame / _frameXCount;
@@ -56,7 +56,7 @@ namespace Bobik
                 _texture,
                 position,
                 new Rectangle(xIndex * _frameWidth, yIndex * _frameHeight, _frameWidth, _frameHeight),
-                Color.White,
+                tintColor,
                 0f,
                 Vector2.Zero,
                 Vector2.One,
