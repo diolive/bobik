@@ -41,6 +41,8 @@ namespace Bobik
             Position = _initialPosition + new Vector2(
                            (float)(PathWidth * Math.Cos(angle + Phase)),
                            (float)(PathHeight * Math.Sin(angle + Phase + PathRotation)));
+            Scale = Vector2.One * (float)(Math.Sin(angle)/2f + 0.7f);
+            Z = (float)Math.Sin(angle);
 
             base.Update(gameTime);
         }

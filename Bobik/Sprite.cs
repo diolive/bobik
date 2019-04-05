@@ -26,12 +26,10 @@ namespace Bobik
             _frameYCount = frameYCount;
             _frameWidth = texture.Width / _frameXCount;
             _frameHeight = texture.Height / _frameYCount;
-            _origin = new Vector2(texture.Width, texture.Height) / 2;
+            _origin = new Vector2(_frameWidth, _frameHeight) / 2;
 
             _timeToFrame = TimeSpan.FromMilliseconds(60);
         }
-
-        public Vector2 Scale { get; set; } = Vector2.One;
 
         public void Update(GameTime gameTime)
         {
@@ -47,7 +45,7 @@ namespace Bobik
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 position, bool hFlipped, Color tintColor)
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, bool hFlipped, Color tintColor, Vector2 scale)
         {
             int xIndex = _currentFrame % _frameXCount;
             int yIndex = _currentFrame / _frameXCount;
@@ -63,7 +61,7 @@ namespace Bobik
                 tintColor,
                 0f,
                 _origin,
-                Scale,
+                scale,
                 effects,
                 0f);
         }

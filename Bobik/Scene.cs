@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -26,7 +27,7 @@ namespace Bobik
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Subject subject in Subjects)
+            foreach (Subject subject in Subjects.OrderBy(s => s.Z))
             {
                 subject.Draw(spriteBatch);
             }

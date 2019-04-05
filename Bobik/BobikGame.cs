@@ -14,7 +14,6 @@ namespace Bobik
         private readonly GraphicsDeviceManager _graphics;
 
         private Scene _currentScene;
-        private Vector2 _screenCenter;
         private SpriteBatch _spriteBatch;
 
         public BobikGame()
@@ -34,8 +33,6 @@ namespace Bobik
             _graphics.PreferredBackBufferWidth = AppSettings.WindowWidth;
             _graphics.PreferredBackBufferHeight = AppSettings.WindowHeight;
             _graphics.ApplyChanges();
-
-            _screenCenter = new Vector2(AppSettings.WindowWidth, AppSettings.WindowHeight) / 2;
 
             base.Initialize();
         }

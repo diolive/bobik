@@ -25,15 +25,19 @@ namespace Bobik
         {
             public static Texture2D Sheet { get; private set; }
             public static Texture2D Bobik { get; private set; }
+            public static Texture2D Bobik1 { get; private set; }
             public static Texture2D AtomRavus { get; private set; }
             public static Texture2D AtomDusya { get; private set; }
+            public static Texture2D Eggs { get; private set; }
 
             public static void LoadAssets(ContentManager contentManager)
             {
                 Sheet = contentManager.Load<Texture2D>("Textures/sheet");
                 Bobik = contentManager.Load<Texture2D>("Textures/bobik");
+                Bobik1 = contentManager.Load<Texture2D>("Textures/bobik1");
                 AtomRavus = contentManager.Load<Texture2D>("Textures/atom_ravus");
                 AtomDusya = contentManager.Load<Texture2D>("Textures/atom_dusya");
+                Eggs = contentManager.Load<Texture2D>("Textures/eggs");
             }
         }
     }

@@ -24,7 +24,7 @@ namespace Bobik
         public static Vector2 ScreenCenter { get; } = new Vector2(WindowWidth, WindowHeight) / 2;
         public static Vector2 BobikInitialPosition { get; } = new Vector2(100, 500);
 
-        public static TimeSpan AtomRavusRotationPeriod { get; } = TimeSpan.FromSeconds(Math.E);
-        public static TimeSpan AtomDusyaRotationPeriod { get; } = TimeSpan.FromSeconds(Math.E);
+        public static TimeSpan AtomRavusRotationPeriod { get; } = TimeSpan.FromSeconds(4);
+        public static TimeSpan AtomDusyaRotationPeriod { get; } = TimeSpan.FromSeconds(4);
     }
 }

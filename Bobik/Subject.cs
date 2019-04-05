@@ -11,9 +11,12 @@ namespace Bobik
         {
             _sprite = sprite;
             Position = initialPosition;
+            Scale = Vector2.One;
         }
 
+        public float Z { get; set; }
         public Vector2 Position { get; set; }
+        public Vector2 Scale { get; set; }
         public bool HFlipped { get; set; }
         public Color TintColor { get; set; } = Color.White;
 
@@ -24,7 +27,7 @@ namespace Bobik
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            _sprite.Draw(spriteBatch, Position, HFlipped, TintColor);
+            _sprite.Draw(spriteBatch, Position, HFlipped, TintColor, Scale);
         }
     }
 }

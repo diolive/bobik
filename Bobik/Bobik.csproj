@@ -55,6 +55,7 @@
     <Compile Include="Rotating3DSubject.cs" />
     <Compile Include="Subjects\AtomDusya.cs" />
     <Compile Include="Subjects\AtomRavus.cs" />
+    <Compile Include="Subjects\Eggs.cs" />
     <Compile Include="Subjects\Sheet.cs" />
     <Compile Include="Subjects\Bobik.cs" />
     <Compile Include="Subject.cs" />

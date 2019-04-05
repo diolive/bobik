@@ -13,6 +13,7 @@ namespace Bobik.Scenes
             : base(setScene)
         {
             Subjects.Add(new Sheet());
+            Subjects.Add(new Eggs());
             Subjects.Add(new AtomRavus());
             Subjects.Add(new AtomDusya());
         }
