@@ -5,7 +5,7 @@
         public Sheet()
             : base(new Sprite(AssetStorage.Textures.Sheet), AppSettings.General.ScreenCenter)
         {
-            Z = -float.MaxValue;
+            Z = -10;
         }
     }
 }

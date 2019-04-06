@@ -14,7 +14,7 @@ namespace Bobik.Scenes
             : base(setScene)
         {
             _levelWidth = levelWidth;
-            Subjects.Add(new Subjects.Level1.Bobik { Z = 100 });
+            Subjects.Add(new Subjects.Level1.Bobik());
         }
 
         private Subjects.Level1.Bobik TheBobik => Subjects.OfType<Subjects.Level1.Bobik>().Single();
@@ -26,23 +26,29 @@ namespace Bobik.Scenes
 
             if (keyboardState.IsKeyDown(Keys.Left))
             {
-                TheBobik.Position -= new Vector2(elapsed * AppSettings.Physics.BobikVelocity, 0);
+                float xDelta = elapsed * AppSettings.Physics.BobikVelocity;
+                TheBobik.Position -= new Vector2(xDelta, 0);
                 TheBobik.HFlipped = true;
-                if (TheBobik.Position.X < AppSettings.General.CameraGap)
+                TheBobik.State = SubjectState.Walk;
+                if (TheBobik.DisplayedPosition.X < AppSettings.General.CameraGap)
                 {
                     Camera.X = Math.Max(0, Camera.X - elapsed * AppSettings.Physics.BobikVelocity);
                 }
             }
-
-            if (keyboardState.IsKeyDown(Keys.Right))
+            else if (keyboardState.IsKeyDown(Keys.Right))
             {
                 TheBobik.Position += new Vector2(elapsed * AppSettings.Physics.BobikVelocity, 0);
                 TheBobik.HFlipped = false;
-                if (TheBobik.Position.X > AppSettings.General.WindowWidth - AppSettings.General.CameraGap)
+                TheBobik.State = SubjectState.Walk;
+                if (TheBobik.DisplayedPosition.X > AppSettings.General.WindowWidth - AppSettings.General.CameraGap)
                 {
                     Camera.X = Math.Min(_levelWidth - AppSettings.General.WindowWidth,
                         Camera.X + elapsed * AppSettings.Physics.BobikVelocity);
                 }
+            }
+            else
+            {
+                TheBobik.State = SubjectState.Idle;
             }
 
             if (keyboardState.IsKeyDown(Keys.Space))

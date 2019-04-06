@@ -55,6 +55,7 @@
     <Compile Include="Scenes\MenuScene.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="Rotating3DSubject.cs" />
+    <Compile Include="SubjectState.cs" />
     <Compile Include="Subjects\Level1\Platform.cs" />
     <Compile Include="Subjects\Level1\LetterD.cs" />
     <Compile Include="Subjects\Level1\LetterC.cs" />

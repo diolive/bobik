@@ -1,16 +1,23 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Bobik
 {
     public class Subject
     {
-        private readonly Sprite _sprite;
+        private readonly Dictionary<SubjectState, Sprite> _sprites;
         private readonly bool _tile;
 
         public Subject(Sprite sprite, Vector2 position)
         {
-            _sprite = sprite;
+            _sprites = new Dictionary<SubjectState, Sprite>
+            {
+                [SubjectState.Idle] = sprite
+            };
+            State = SubjectState.Idle;
             Position = position;
             Scale = Vector2.One;
         }
@@ -21,15 +28,36 @@ namespace Bobik
             _tile = tile;
         }
 
+        public SubjectState State { get; set; }
+
+        private Sprite CurrentSprite => _sprites[State];
+
         public float Z { get; set; }
         public Vector2 Position { get; set; }
         public Vector2 Scale { get; set; }
         public bool HFlipped { get; set; }
         public Color TintColor { get; set; } = Color.White;
 
+        public Vector2 DisplayedPosition => GetDisplayedPosition(Position);
+
+        public void AddState(SubjectState state, Sprite sprite)
+        {
+            _sprites.Add(state, sprite);
+        }
+
+        public Vector2 GetDisplayedPosition(Vector2 position)
+        {
+            return position - Camera.Position * (float)Math.Pow(0.9, -Z);
+        }
+
+        public Vector2 GetDisplayedPosition(float x, float y)
+        {
+            return GetDisplayedPosition(new Vector2(x, y));
+        }
+
         public virtual void Update(GameTime gameTime)
         {
-            _sprite.Update(gameTime);
+            CurrentSprite.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -43,17 +71,40 @@ namespace Bobik
                     float x = Position.X;
                     while (x < AppSettings.General.WindowWidth)
                     {
-                        _sprite.Draw(spriteBatch, new Vector2(x, y), HFlipped, TintColor, Scale);
-                        x += _sprite.FrameWidth;
+                        spriteBatch.Draw(
+                            CurrentSprite.Texture,
+                            GetDisplayedPosition(x, y),
+                            CurrentSprite.BoundingRectangle,
+                            TintColor,
+                            0f,
+                            CurrentSprite.Origin,
+                            Scale,
+                            HFlipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
+                            0f);
+                        x += CurrentSprite.FrameWidth;
                     }
 
-                    y += _sprite.FrameHeight;
+                    y += CurrentSprite.FrameHeight;
                 }
             }
             else
             {
-                _sprite.Draw(spriteBatch, Position, HFlipped, TintColor, Scale);
+                spriteBatch.Draw(
+                    CurrentSprite.Texture,
+                    DisplayedPosition,
+                    CurrentSprite.BoundingRectangle,
+                    TintColor,
+                    0f,
+                    CurrentSprite.Origin,
+                    Scale,
+                    HFlipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
+                    0f);
             }
+        }
+
+        public override string ToString()
+        {
+            return Position + " : " + DisplayedPosition;
         }
     }
 }

@@ -24,8 +24,10 @@ namespace Bobik
         public static class Textures
         {
             public static Texture2D Sheet { get; private set; }
-            public static Texture2D Bobik { get; private set; }
-            public static Texture2D Bobik1 { get; private set; }
+            public static Texture2D BobikMain { get; private set; }
+            public static Texture2D BobikIdle { get; private set; }
+            public static Texture2D BobikWalk { get; private set; }
+            public static Texture2D BobikStatic { get; private set; }
             public static Texture2D AtomRavus { get; private set; }
             public static Texture2D AtomDusya { get; private set; }
             public static Texture2D AtomDio { get; private set; }
@@ -47,8 +49,10 @@ namespace Bobik
             public static void LoadAssets(ContentManager contentManager)
             {
                 Sheet = contentManager.Load<Texture2D>("Textures/sheet");
-                Bobik = contentManager.Load<Texture2D>("Textures/bobik");
-                Bobik1 = contentManager.Load<Texture2D>("Textures/bobik1");
+                BobikMain = contentManager.Load<Texture2D>("Textures/bobik_main");
+                BobikIdle = contentManager.Load<Texture2D>("Textures/bobik_idle");
+                BobikWalk = contentManager.Load<Texture2D>("Textures/bobik_walk");
+                BobikStatic = contentManager.Load<Texture2D>("Textures/bobik_static");
                 AtomRavus = contentManager.Load<Texture2D>("Textures/atom_ravus");
                 AtomDusya = contentManager.Load<Texture2D>("Textures/atom_dusya");
                 AtomDio = contentManager.Load<Texture2D>("Textures/atom_dio");

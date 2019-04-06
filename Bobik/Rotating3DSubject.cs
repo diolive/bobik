@@ -43,7 +43,7 @@ namespace Bobik
             Scale = Vector2.One *
                     (float)(Math.Sin(angle + Phase) * AppSettings.Atoms.RotationScaleMultiplier +
                             AppSettings.Atoms.RotationScaleBase);
-            Z = (float)Math.Sin(angle);
+            Z = (float)Math.Sin(angle + Phase);
 
             base.Update(gameTime);
         }

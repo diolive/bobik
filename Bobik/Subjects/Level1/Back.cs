@@ -7,7 +7,7 @@ namespace Bobik.Subjects.Level1
         public Back()
             : base(new Sprite(AssetStorage.Textures.Back) { Origin = Vector2.Zero }, true)
         {
-            Z = -float.MaxValue;
+            Z = -10;
         }
     }
 }
