@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
 
-using Bobik.Subjects;
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -10,14 +8,16 @@ namespace Bobik.Scenes
 {
     public class LevelScene : Scene
     {
-        public LevelScene(Action<Scene> setScene)
+        private readonly int _levelWidth;
+
+        public LevelScene(Action<Scene> setScene, int levelWidth)
             : base(setScene)
         {
-            Subjects.Add(new Sheet());
-            Subjects.Add(new Subjects.Bobik());
+            _levelWidth = levelWidth;
+            Subjects.Add(new Subjects.Level1.Bobik { Z = 100 });
         }
 
-        private Subjects.Bobik TheBobik => Subjects.OfType<Subjects.Bobik>().Single();
+        private Subjects.Level1.Bobik TheBobik => Subjects.OfType<Subjects.Level1.Bobik>().Single();
 
         public override void Update(GameTime gameTime)
         {
@@ -26,14 +26,23 @@ namespace Bobik.Scenes
 
             if (keyboardState.IsKeyDown(Keys.Left))
             {
-                TheBobik.Position -= new Vector2(elapsed * AppSettings.BobikVelocity, 0);
+                TheBobik.Position -= new Vector2(elapsed * AppSettings.Physics.BobikVelocity, 0);
                 TheBobik.HFlipped = true;
+                if (TheBobik.Position.X < AppSettings.General.CameraGap)
+                {
+                    Camera.X = Math.Max(0, Camera.X - elapsed * AppSettings.Physics.BobikVelocity);
+                }
             }
 
             if (keyboardState.IsKeyDown(Keys.Right))
             {
-                TheBobik.Position += new Vector2(elapsed * AppSettings.BobikVelocity, 0);
+                TheBobik.Position += new Vector2(elapsed * AppSettings.Physics.BobikVelocity, 0);
                 TheBobik.HFlipped = false;
+                if (TheBobik.Position.X > AppSettings.General.WindowWidth - AppSettings.General.CameraGap)
+                {
+                    Camera.X = Math.Min(_levelWidth - AppSettings.General.WindowWidth,
+                        Camera.X + elapsed * AppSettings.Physics.BobikVelocity);
+                }
             }
 
             if (keyboardState.IsKeyDown(Keys.Space))

@@ -7,11 +7,8 @@ namespace Bobik
 {
     public class Sprite
     {
-        private readonly int _frameHeight;
-        private readonly int _frameWidth;
         private readonly int _frameXCount;
         private readonly int _frameYCount;
-        private readonly Vector2 _origin;
         private readonly Texture2D _texture;
 
         private readonly TimeSpan _timeToFrame;
@@ -24,12 +21,17 @@ namespace Bobik
             _texture = texture;
             _frameXCount = frameXCount;
             _frameYCount = frameYCount;
-            _frameWidth = texture.Width / _frameXCount;
-            _frameHeight = texture.Height / _frameYCount;
-            _origin = new Vector2(_frameWidth, _frameHeight) / 2;
+            FrameWidth = texture.Width / _frameXCount;
+            FrameHeight = texture.Height / _frameYCount;
+            Origin = new Vector2(FrameWidth, FrameHeight) / 2;
 
             _timeToFrame = TimeSpan.FromMilliseconds(60);
         }
+
+        public Vector2 Origin { get; set; }
+
+        public int FrameWidth { get; }
+        public int FrameHeight { get; }
 
         public void Update(GameTime gameTime)
         {
@@ -56,11 +58,11 @@ namespace Bobik
 
             spriteBatch.Draw(
                 _texture,
-                position,
-                new Rectangle(xIndex * _frameWidth, yIndex * _frameHeight, _frameWidth, _frameHeight),
+                position - Camera.Position,
+                new Rectangle(xIndex * FrameWidth, yIndex * FrameHeight, FrameWidth, FrameHeight),
                 tintColor,
                 0f,
-                _origin,
+                Origin,
                 scale,
                 effects,
                 0f);

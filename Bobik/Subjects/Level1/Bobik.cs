@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Bobik.Subjects
+namespace Bobik.Subjects.Level1
 {
     public class Bobik : GravitySubject
     {
         public Bobik()
-            : base(new Sprite(AssetStorage.Textures.Bobik1,8), AppSettings.BobikInitialPosition)
+            : base(new Sprite(AssetStorage.Textures.Bobik1,8), AppSettings.Level1.BobikInitialPosition)
         {
             Dropped += () => IsJumping = false;
         }
@@ -16,7 +16,7 @@ namespace Bobik.Subjects
         {
             if (IsJumping)
             {
-                VerticalVelocity += (float)gameTime.ElapsedGameTime.TotalMilliseconds * AppSettings.Gravity;
+                VerticalVelocity += (float)gameTime.ElapsedGameTime.TotalMilliseconds * AppSettings.Physics.Gravity;
             }
 
             base.Update(gameTime);
@@ -30,7 +30,7 @@ namespace Bobik.Subjects
             }
 
             IsJumping = true;
-            VerticalVelocity = -AppSettings.JumpVelocity;
+            VerticalVelocity = -AppSettings.Physics.JumpVelocity;
         }
     }
 }

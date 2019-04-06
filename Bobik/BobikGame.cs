@@ -30,8 +30,8 @@ namespace Bobik
         /// </summary>
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferWidth = AppSettings.WindowWidth;
-            _graphics.PreferredBackBufferHeight = AppSettings.WindowHeight;
+            _graphics.PreferredBackBufferWidth = AppSettings.General.WindowWidth;
+            _graphics.PreferredBackBufferHeight = AppSettings.General.WindowHeight;
             _graphics.ApplyChanges();
 
             base.Initialize();

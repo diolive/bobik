@@ -1,6 +1,6 @@
 ﻿using System;
 
-using Bobik.Subjects;
+using Bobik.Subjects.Menu;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -25,7 +25,7 @@ namespace Bobik.Scenes
 
             if (keyboardState.IsKeyDown(Keys.Space))
             {
-                SetScene(new LevelScene(SetScene));
+                SetScene(new Level1Scene(SetScene));
             }
 
             base.Update(gameTime);

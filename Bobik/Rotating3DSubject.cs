@@ -6,14 +6,14 @@ namespace Bobik
 {
     public class Rotating3DSubject : Subject
     {
-        private readonly Vector2 _initialPosition;
+        private readonly Vector2 _position;
         private TimeSpan _elapsed;
 
-        public Rotating3DSubject(Sprite sprite, Vector2 initialPosition, TimeSpan rotationPeriod, float pathWidth,
+        public Rotating3DSubject(Sprite sprite, Vector2 position, TimeSpan rotationPeriod, float pathWidth,
                                  float pathHeight, float pathRotation, float phase)
-            : base(sprite, initialPosition)
+            : base(sprite, position)
         {
-            _initialPosition = initialPosition;
+            _position = position;
             RotationPeriod = rotationPeriod;
             PathWidth = pathWidth;
             PathHeight = pathHeight;
@@ -37,12 +37,13 @@ namespace Bobik
             }
 
             var angle = (float)(_elapsed.TotalMilliseconds / RotationPeriod.TotalMilliseconds * Math.PI * 2);
-            Position = _initialPosition + new Vector2(
+            Position = _position + new Vector2(
                            (float)(PathWidth * Math.Cos(angle + Phase)),
                            (float)(PathHeight * Math.Sin(angle + Phase + PathRotation)));
             Scale = Vector2.One *
-                    (float)(Math.Sin(angle + Phase) * AppSettings.RotationScaleMultiplier + AppSettings.RotationScaleBase);
-            Z = (float)Math.Sin(angle + Phase);
+                    (float)(Math.Sin(angle + Phase) * AppSettings.Atoms.RotationScaleMultiplier +
+                            AppSettings.Atoms.RotationScaleBase);
+            Z = (float)Math.Sin(angle);
 
             base.Update(gameTime);
         }
