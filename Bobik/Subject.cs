@@ -8,11 +8,12 @@ namespace Bobik
 {
     public class Subject
     {
+        private readonly RepeatMode _repeatMode;
         private readonly Dictionary<SubjectState, Sprite> _sprites;
-        private readonly bool _tile;
 
-        public Subject(Sprite sprite, Vector2 position)
+        public Subject(Sprite sprite, Vector2 position, RepeatMode repeatMode = RepeatMode.None)
         {
+            _repeatMode = repeatMode;
             _sprites = new Dictionary<SubjectState, Sprite>
             {
                 [SubjectState.Idle] = sprite
@@ -22,10 +23,9 @@ namespace Bobik
             Scale = Vector2.One;
         }
 
-        public Subject(Sprite sprite, bool tile)
-            : this(sprite, Vector2.Zero)
+        public Subject(Sprite sprite, RepeatMode repeatMode = RepeatMode.None)
+            : this(sprite, Vector2.Zero, repeatMode)
         {
-            _tile = tile;
         }
 
         public SubjectState State { get; set; }
@@ -62,44 +62,37 @@ namespace Bobik
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (_tile)
-            {
-                float y = Position.Y;
+            float y = Position.Y;
 
-                while (y < AppSettings.General.WindowHeight)
+            while (y < AppSettings.General.WindowHeight)
+            {
+                float x = Position.X;
+                while (x < AppSettings.General.WindowWidth)
                 {
-                    float x = Position.X;
-                    while (x < AppSettings.General.WindowWidth)
-                    {
-                        spriteBatch.Draw(
-                            CurrentSprite.Texture,
-                            GetDisplayedPosition(x, y),
-                            CurrentSprite.BoundingRectangle,
-                            TintColor,
-                            0f,
-                            CurrentSprite.Origin,
-                            Scale,
-                            HFlipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
-                            0f);
-                        x += CurrentSprite.FrameWidth;
-                    }
+                    Draw(spriteBatch, GetDisplayedPosition(x, y));
+                    if (!_repeatMode.HasFlag(RepeatMode.Horizontal)) break;
 
-                    y += CurrentSprite.FrameHeight;
+                    x += CurrentSprite.FrameWidth;
                 }
+
+                if (!_repeatMode.HasFlag(RepeatMode.Vertical)) break;
+
+                y += CurrentSprite.FrameHeight;
             }
-            else
-            {
-                spriteBatch.Draw(
-                    CurrentSprite.Texture,
-                    DisplayedPosition,
-                    CurrentSprite.BoundingRectangle,
-                    TintColor,
-                    0f,
-                    CurrentSprite.Origin,
-                    Scale,
-                    HFlipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
-                    0f);
-            }
+        }
+
+        private void Draw(SpriteBatch spriteBatch, Vector2 position)
+        {
+            spriteBatch.Draw(
+                CurrentSprite.Texture,
+                position,
+                CurrentSprite.BoundingRectangle,
+                TintColor,
+                0f,
+                CurrentSprite.Origin,
+                Scale,
+                HFlipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
+                0f);
         }
 
         public override string ToString()

@@ -49,6 +49,7 @@
     <Compile Include="GravitySubject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepeatMode.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="Scenes\Level1Scene.cs" />
     <Compile Include="Scenes\LevelScene.cs" />
@@ -62,18 +63,18 @@
     <Compile Include="Subjects\Level1\LetterB.cs" />
     <Compile Include="Subjects\Level1\LetterA.cs" />
     <Compile Include="Subjects\Level1\Ground.cs" />
-    <Compile Include="Subjects\Level1\Fon3.cs" />
-    <Compile Include="Subjects\Level1\Fon2.cs" />
-    <Compile Include="Subjects\Level1\Fon1.cs" />
-    <Compile Include="Subjects\Menu\AtomDio.cs" />
-    <Compile Include="Subjects\Menu\AtomDusya.cs" />
-    <Compile Include="Subjects\Menu\AtomRavus.cs" />
+    <Compile Include="Subjects\Level1\Back.cs" />
+    <Compile Include="Subjects\Level1\Middle.cs" />
+    <Compile Include="Subjects\Level1\Front.cs" />
+    <Compile Include="Subjects\Atoms\AtomDio.cs" />
+    <Compile Include="Subjects\Atoms\AtomDusya.cs" />
+    <Compile Include="Subjects\Atoms\AtomRavus.cs" />
     <Compile Include="Subjects\Level1\Cloud3.cs" />
     <Compile Include="Subjects\Level1\Cloud2.cs" />
     <Compile Include="Subjects\Level1\Cloud1.cs" />
-    <Compile Include="Subjects\Menu\Eggs.cs" />
-    <Compile Include="Subjects\Level1\Back.cs" />
-    <Compile Include="Subjects\Menu\Sheet.cs" />
+    <Compile Include="Subjects\Atoms\Eggs.cs" />
+    <Compile Include="Subjects\Level1\Sheet1.cs" />
+    <Compile Include="Subjects\Atoms\Sheet.cs" />
     <Compile Include="Subjects\Level1\Bobik.cs" />
     <Compile Include="Subject.cs" />
   </ItemGroup>

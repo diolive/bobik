@@ -4,10 +4,11 @@ namespace Bobik.Subjects.Level1
 {
     public class Back : Subject
     {
-        public Back()
-            : base(new Sprite(AssetStorage.Textures.Back) { Origin = Vector2.Zero }, true)
+        public Back(int index)
+            : base(new Sprite(AssetStorage.Textures.Back[index]) { Origin = Vector2.Zero },
+                new Vector2(index * 1600, 0))
         {
-            Z = -10;
+            Z = -8;
         }
     }
 }

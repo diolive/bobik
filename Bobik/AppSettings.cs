@@ -47,7 +47,7 @@ namespace Bobik
 
         public static class Level1
         {
-            public static Vector2 BobikInitialPosition { get; } = new Vector2(700, 500);
+            public static Vector2 BobikInitialPosition { get; } = new Vector2(700, 400);
         }
     }
 }

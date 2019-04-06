@@ -1,9 +1,12 @@
-﻿namespace Bobik.Subjects.Level1
+﻿using Microsoft.Xna.Framework;
+
+namespace Bobik.Subjects.Level1
 {
     public class Ground : Subject
     {
-        public Ground()
-            : base(new Sprite(AssetStorage.Textures.Ground), AppSettings.General.ScreenCenter)
+        public Ground(int index)
+            : base(new Sprite(AssetStorage.Textures.Ground[index]) { Origin = Vector2.Zero },
+                new Vector2(index * 800, 464))
         {
         }
     }

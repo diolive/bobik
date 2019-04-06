@@ -1,6 +1,6 @@
 ﻿using System;
 
-using Bobik.Subjects.Menu;
+using Bobik.Subjects.Atoms;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;

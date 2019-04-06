@@ -1,23 +1,28 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using System.Linq;
+
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Bobik
 {
     public static class AssetStorage
     {
+        private static ContentManager _contentManager;
+
         public static void LoadAssets(ContentManager contentManager)
         {
-            Fonts.LoadAssets(contentManager);
-            Textures.LoadAssets(contentManager);
+            _contentManager = contentManager;
+            Fonts.Load();
+            Textures.Load();
         }
 
         public static class Fonts
         {
             public static SpriteFont Primary { get; private set; }
 
-            public static void LoadAssets(ContentManager contentManager)
+            public static void Load()
             {
-                Primary = contentManager.Load<SpriteFont>("Fonts/Primary");
+                Primary = _contentManager.Load<SpriteFont>("Fonts/Primary");
             }
         }
 
@@ -32,44 +37,52 @@ namespace Bobik
             public static Texture2D AtomDusya { get; private set; }
             public static Texture2D AtomDio { get; private set; }
             public static Texture2D Eggs { get; private set; }
-            public static Texture2D Back { get; private set; }
+            public static Texture2D Sheet1 { get; private set; }
             public static Texture2D Cloud1 { get; private set; }
             public static Texture2D Cloud2 { get; private set; }
             public static Texture2D Cloud3 { get; private set; }
-            public static Texture2D Fon1 { get; private set; }
-            public static Texture2D Fon2 { get; private set; }
-            public static Texture2D Fon3 { get; private set; }
-            public static Texture2D Ground { get; private set; }
+            public static Texture2D[] Front { get; private set; }
+            public static Texture2D[] Middle { get; private set; }
+            public static Texture2D[] Back { get; private set; }
+            public static Texture2D[] Ground { get; private set; }
             public static Texture2D LetterA { get; private set; }
             public static Texture2D LetterB { get; private set; }
             public static Texture2D LetterC { get; private set; }
             public static Texture2D LetterD { get; private set; }
             public static Texture2D Platform { get; private set; }
 
-            public static void LoadAssets(ContentManager contentManager)
+            public static void Load()
             {
-                Sheet = contentManager.Load<Texture2D>("Textures/sheet");
-                BobikMain = contentManager.Load<Texture2D>("Textures/bobik_main");
-                BobikIdle = contentManager.Load<Texture2D>("Textures/bobik_idle");
-                BobikWalk = contentManager.Load<Texture2D>("Textures/bobik_walk");
-                BobikStatic = contentManager.Load<Texture2D>("Textures/bobik_static");
-                AtomRavus = contentManager.Load<Texture2D>("Textures/atom_ravus");
-                AtomDusya = contentManager.Load<Texture2D>("Textures/atom_dusya");
-                AtomDio = contentManager.Load<Texture2D>("Textures/atom_dio");
-                Eggs = contentManager.Load<Texture2D>("Textures/eggs");
-                Back = contentManager.Load<Texture2D>("Textures/back");
-                Cloud1 = contentManager.Load<Texture2D>("Textures/cloud_1");
-                Cloud2 = contentManager.Load<Texture2D>("Textures/cloud_2");
-                Cloud3 = contentManager.Load<Texture2D>("Textures/cloud_3");
-                //Fon1 = contentManager.Load<Texture2D>("Textures/fon_1");
-                //Fon2 = contentManager.Load<Texture2D>("Textures/fon_2");
-                //Fon3 = contentManager.Load<Texture2D>("Textures/fon_3");
-                //Ground = contentManager.Load<Texture2D>("Textures/ground");
-                LetterA = contentManager.Load<Texture2D>("Textures/letter_a");
-                LetterB = contentManager.Load<Texture2D>("Textures/letter_b");
-                LetterC = contentManager.Load<Texture2D>("Textures/letter_c");
-                LetterD = contentManager.Load<Texture2D>("Textures/letter_d");
-                Platform = contentManager.Load<Texture2D>("Textures/platform");
+                Sheet = _contentManager.Load<Texture2D>("Textures/sheet");
+                BobikMain = _contentManager.Load<Texture2D>("Textures/bobik_main");
+                BobikIdle = _contentManager.Load<Texture2D>("Textures/bobik_idle");
+                BobikWalk = _contentManager.Load<Texture2D>("Textures/bobik_walk");
+                BobikStatic = _contentManager.Load<Texture2D>("Textures/bobik_static");
+                AtomRavus = _contentManager.Load<Texture2D>("Textures/atom_ravus");
+                AtomDusya = _contentManager.Load<Texture2D>("Textures/atom_dusya");
+                AtomDio = _contentManager.Load<Texture2D>("Textures/atom_dio");
+                Eggs = _contentManager.Load<Texture2D>("Textures/eggs");
+                Sheet1 = _contentManager.Load<Texture2D>("Textures/sheet1");
+                Cloud1 = _contentManager.Load<Texture2D>("Textures/cloud_1");
+                Cloud2 = _contentManager.Load<Texture2D>("Textures/cloud_2");
+                Cloud3 = _contentManager.Load<Texture2D>("Textures/cloud_3");
+                Front = Enumerable.Range(1, 5)
+                    .Select(index => _contentManager.Load<Texture2D>($"Textures/front_{index}"))
+                    .ToArray();
+                Middle = Enumerable.Range(1, 5)
+                    .Select(index => _contentManager.Load<Texture2D>($"Textures/middle_{index}"))
+                    .ToArray();
+                Back = Enumerable.Range(1, 5)
+                    .Select(index => _contentManager.Load<Texture2D>($"Textures/back_{index}"))
+                    .ToArray();
+                Ground = Enumerable.Range(1, 5)
+                    .Select(index => _contentManager.Load<Texture2D>($"Textures/ground_{index}"))
+                    .ToArray();
+                LetterA = _contentManager.Load<Texture2D>("Textures/letter_a");
+                LetterB = _contentManager.Load<Texture2D>("Textures/letter_b");
+                LetterC = _contentManager.Load<Texture2D>("Textures/letter_c");
+                LetterD = _contentManager.Load<Texture2D>("Textures/letter_d");
+                Platform = _contentManager.Load<Texture2D>("Textures/platform");
             }
         }
     }

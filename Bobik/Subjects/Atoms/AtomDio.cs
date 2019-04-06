@@ -1,4 +1,4 @@
-﻿namespace Bobik.Subjects.Menu
+﻿namespace Bobik.Subjects.Atoms
 {
     public class AtomDio : Rotating3DSubject
     {
