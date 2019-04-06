@@ -3,7 +3,7 @@
     public class Sheet : Subject
     {
         public Sheet()
-            : base(new Sprite(AssetStorage.Textures.Sheet), AppSettings.General.ScreenCenter)
+            : base(new Sprite(AssetStorage.Textures.Atoms.Sheet), AppSettings.General.ScreenCenter)
         {
             Z = -10;
         }

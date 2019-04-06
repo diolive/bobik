@@ -9,12 +9,16 @@ namespace Bobik.Scenes
         public Level1Scene(Action<Scene> setScene)
             : base(setScene, 8000)
         {
-            Subjects.Add(new Sheet1());
+            for (var i = 0; i < 10; i++)
+            {
+                Subjects.Add(new Sheet(i));
+            }
+
             //Subjects.Add(new Cloud1());
             //Subjects.Add(new Cloud2());
             //Subjects.Add(new Cloud3());
 
-            for (int i = 0; i < 5; i++)
+            for (var i = 0; i < 5; i++)
             {
                 Subjects.Add(new Back(i));
                 Subjects.Add(new Middle(i));

@@ -50,7 +50,7 @@ namespace Bobik
 
             AssetStorage.LoadAssets(Content);
 
-            _currentScene = new MenuScene(SetScene);
+            _currentScene = new AtomsScene(SetScene);
         }
 
         /// <summary>

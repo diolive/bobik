@@ -3,7 +3,7 @@
     public class Platform : Subject
     {
         public Platform()
-            : base(new Sprite(AssetStorage.Textures.Platform), AppSettings.General.ScreenCenter)
+            : base(new Sprite(AssetStorage.Textures.Level1.Platform), AppSettings.General.ScreenCenter)
         {
         }
     }

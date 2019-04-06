@@ -7,9 +7,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Bobik.Scenes
 {
-    public class MenuScene : Scene
+    public class AtomsScene : Scene
     {
-        public MenuScene(Action<Scene> setScene)
+        public AtomsScene(Action<Scene> setScene)
             : base(setScene)
         {
             Subjects.Add(new Sheet());

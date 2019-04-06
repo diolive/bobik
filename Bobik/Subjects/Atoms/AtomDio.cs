@@ -3,7 +3,7 @@
     public class AtomDio : Rotating3DSubject
     {
         public AtomDio()
-            : base(new Sprite(AssetStorage.Textures.AtomDio),
+            : base(new Sprite(AssetStorage.Textures.Atoms.AtomDio),
                 AppSettings.General.ScreenCenter,
                 AppSettings.Atoms.AtomDioRotationPeriod,
                 AppSettings.Atoms.AtomDioPathWidth,

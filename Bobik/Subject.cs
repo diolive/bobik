@@ -8,12 +8,10 @@ namespace Bobik
 {
     public class Subject
     {
-        private readonly RepeatMode _repeatMode;
         private readonly Dictionary<SubjectState, Sprite> _sprites;
 
-        public Subject(Sprite sprite, Vector2 position, RepeatMode repeatMode = RepeatMode.None)
+        public Subject(Sprite sprite, Vector2 position)
         {
-            _repeatMode = repeatMode;
             _sprites = new Dictionary<SubjectState, Sprite>
             {
                 [SubjectState.Idle] = sprite
@@ -23,8 +21,8 @@ namespace Bobik
             Scale = Vector2.One;
         }
 
-        public Subject(Sprite sprite, RepeatMode repeatMode = RepeatMode.None)
-            : this(sprite, Vector2.Zero, repeatMode)
+        public Subject(Sprite sprite)
+            : this(sprite, Vector2.Zero)
         {
         }
 
@@ -62,30 +60,9 @@ namespace Bobik
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            float y = Position.Y;
-
-            while (y < AppSettings.General.WindowHeight)
-            {
-                float x = Position.X;
-                while (x < AppSettings.General.WindowWidth)
-                {
-                    Draw(spriteBatch, GetDisplayedPosition(x, y));
-                    if (!_repeatMode.HasFlag(RepeatMode.Horizontal)) break;
-
-                    x += CurrentSprite.FrameWidth;
-                }
-
-                if (!_repeatMode.HasFlag(RepeatMode.Vertical)) break;
-
-                y += CurrentSprite.FrameHeight;
-            }
-        }
-
-        private void Draw(SpriteBatch spriteBatch, Vector2 position)
-        {
             spriteBatch.Draw(
                 CurrentSprite.Texture,
-                position,
+                DisplayedPosition,
                 CurrentSprite.BoundingRectangle,
                 TintColor,
                 0f,
@@ -93,11 +70,6 @@ namespace Bobik
                 Scale,
                 HFlipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
                 0f);
-        }
-
-        public override string ToString()
-        {
-            return Position + " : " + DisplayedPosition;
         }
     }
 }
