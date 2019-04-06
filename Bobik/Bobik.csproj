@@ -53,6 +53,7 @@
     <Compile Include="Scenes\MenuScene.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="Rotating3DSubject.cs" />
+    <Compile Include="Subjects\AtomDio.cs" />
     <Compile Include="Subjects\AtomDusya.cs" />
     <Compile Include="Subjects\AtomRavus.cs" />
     <Compile Include="Subjects\Eggs.cs" />

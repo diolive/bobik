@@ -16,6 +16,7 @@ namespace Bobik.Scenes
             Subjects.Add(new Eggs());
             Subjects.Add(new AtomRavus());
             Subjects.Add(new AtomDusya());
+            Subjects.Add(new AtomDio());
         }
 
         public override void Update(GameTime gameTime)

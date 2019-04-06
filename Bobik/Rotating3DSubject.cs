@@ -41,8 +41,8 @@ namespace Bobik
                            (float)(PathWidth * Math.Cos(angle + Phase)),
                            (float)(PathHeight * Math.Sin(angle + Phase + PathRotation)));
             Scale = Vector2.One *
-                    (float)(Math.Sin(angle) * AppSettings.RotationScaleMultiplier + AppSettings.RotationScaleBase);
-            Z = (float)Math.Sin(angle);
+                    (float)(Math.Sin(angle + Phase) * AppSettings.RotationScaleMultiplier + AppSettings.RotationScaleBase);
+            Z = (float)Math.Sin(angle + Phase);
 
             base.Update(gameTime);
         }

@@ -20,6 +20,18 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Primary.spritefont
 
+#begin Textures/atom_dio.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/atom_dio.png
+
 #begin Textures/atom_dusya.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -80,7 +92,7 @@
 /processorParam:TextureFormat=Color
 /build:Textures/eggs.png
 
-#begin Textures/sheet.png
+#begin Textures/sheet.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -90,5 +102,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Textures/sheet.png
+/build:Textures/sheet.jpg
 
