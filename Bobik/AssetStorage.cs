@@ -26,8 +26,8 @@ namespace Bobik
 
         public static class Textures
         {
-            public static Texture2D BobikMain { get; } = Load("bobik_main");
             public static Texture2D BobikStatic { get; } = Load("bobik_static");
+            public static Texture2D Cursor { get; } = Load("cursor");
 
             private static Texture2D Load(string name)
             {
@@ -45,6 +45,21 @@ namespace Bobik
                 private static Texture2D Load(string name)
                 {
                     return Textures.Load($"Atoms/{name}");
+                }
+            }
+
+            public static class Menu
+            {
+                public static Texture2D Background { get; } = Load("background");
+                public static Texture2D BobikMain { get; } = Load("bobik_main");
+                public static Texture2D Zemfira { get; } = Load("zemfira");
+                public static Texture2D Begin { get; } = Load("begin");
+                public static Texture2D Cards { get; } = Load("cards");
+                public static Texture2D Welcome { get; } = Load("welcome");
+
+                private static Texture2D Load(string name)
+                {
+                    return Textures.Load($"Menu/{name}");
                 }
             }
 

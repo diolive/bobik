@@ -9,6 +9,8 @@ namespace Bobik
     public class Subject
     {
         private readonly Dictionary<SubjectState, Sprite> _sprites;
+        private Rectangle _boundingRectangle;
+        private Vector2 _previousDisplayPosition;
 
         public Subject(Sprite sprite, Vector2 position)
         {
@@ -36,21 +38,39 @@ namespace Bobik
         public bool HFlipped { get; set; }
         public Color TintColor { get; set; } = Color.White;
 
-        public Vector2 DisplayedPosition => GetDisplayedPosition(Position);
+        public Vector2 DisplayPosition => GetDisplayPosition(Position);
+        public Rectangle BoundingRectangle
+        {
+            get
+            {
+                Vector2 displayPosition = DisplayPosition;
+                if (displayPosition != _previousDisplayPosition)
+                {
+                    Rectangle rect = CurrentSprite.BoundingRectangle;
+                    rect.Offset(Position);
+                    rect.Offset(-CurrentSprite.Origin);
+
+                    _boundingRectangle = rect;
+                    _previousDisplayPosition = displayPosition;
+                }
+
+                return _boundingRectangle;
+            }
+        }
 
         public void AddState(SubjectState state, Sprite sprite)
         {
             _sprites.Add(state, sprite);
         }
 
-        public Vector2 GetDisplayedPosition(Vector2 position)
+        public Vector2 GetDisplayPosition(Vector2 position)
         {
             return position - Camera.Position * (float)Math.Pow(0.9, -Z);
         }
 
-        public Vector2 GetDisplayedPosition(float x, float y)
+        public Vector2 GetDisplayPosition(float x, float y)
         {
-            return GetDisplayedPosition(new Vector2(x, y));
+            return GetDisplayPosition(new Vector2(x, y));
         }
 
         public virtual void Update(GameTime gameTime)
@@ -62,7 +82,7 @@ namespace Bobik
         {
             spriteBatch.Draw(
                 CurrentSprite.Texture,
-                DisplayedPosition,
+                DisplayPosition,
                 CurrentSprite.BoundingRectangle,
                 TintColor,
                 0f,
@@ -70,6 +90,11 @@ namespace Bobik
                 Scale,
                 HFlipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None,
                 0f);
+        }
+
+        public bool IsHovered(Point point)
+        {
+            return BoundingRectangle.Contains(point);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Bobik
 {
@@ -16,6 +17,7 @@ namespace Bobik
 
         protected Action<Scene> SetScene { get; }
         public ICollection<Subject> Subjects { get; } = new List<Subject>();
+        public bool ShowCursor { get; set; }
 
         public virtual void Update(GameTime gameTime)
         {
@@ -30,6 +32,20 @@ namespace Bobik
             foreach (Subject subject in Subjects.OrderBy(s => s.Z))
             {
                 subject.Draw(spriteBatch);
+            }
+
+            if (ShowCursor)
+            {
+                spriteBatch.Draw(
+                    AssetStorage.Textures.Cursor,
+                    Mouse.GetState().Position.ToVector2(),
+                    null,
+                    Color.White,
+                    0f,
+                    origin: new Vector2(10, 90),
+                    1f,
+                    SpriteEffects.None,
+                    0f);
             }
         }
     }

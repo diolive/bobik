@@ -25,7 +25,7 @@ namespace Bobik.Scenes
 
             if (keyboardState.IsKeyDown(Keys.Space))
             {
-                SetScene(new Level1Scene(SetScene));
+                SetScene(new MenuScene(SetScene));
             }
 
             base.Update(gameTime);

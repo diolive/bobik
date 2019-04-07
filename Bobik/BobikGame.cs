@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-using Bobik.Scenes;
+﻿using Bobik.Scenes;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -91,11 +89,6 @@ namespace Bobik
             _spriteBatch.Begin();
             _currentScene.Draw(_spriteBatch);
             _spriteBatch.End();
-
-            if (_currentScene is Level1Scene l1s)
-            {
-                Window.Title = l1s.Subjects.OfType<Subjects.Level1.Bobik>().First().ToString();
-            }
 
             base.Draw(gameTime);
         }

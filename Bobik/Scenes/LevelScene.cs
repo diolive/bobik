@@ -30,7 +30,7 @@ namespace Bobik.Scenes
                 TheBobik.Position -= new Vector2(xDelta, 0);
                 TheBobik.HFlipped = true;
                 TheBobik.State = SubjectState.Walk;
-                if (TheBobik.DisplayedPosition.X < AppSettings.General.CameraGap)
+                if (TheBobik.DisplayPosition.X < AppSettings.General.CameraGap)
                 {
                     Camera.X = Math.Max(0, Camera.X - elapsed * AppSettings.Physics.BobikVelocity);
                 }
@@ -40,7 +40,7 @@ namespace Bobik.Scenes
                 TheBobik.Position += new Vector2(elapsed * AppSettings.Physics.BobikVelocity, 0);
                 TheBobik.HFlipped = false;
                 TheBobik.State = SubjectState.Walk;
-                if (TheBobik.DisplayedPosition.X > AppSettings.General.WindowWidth - AppSettings.General.CameraGap)
+                if (TheBobik.DisplayPosition.X > AppSettings.General.WindowWidth - AppSettings.General.CameraGap)
                 {
                     Camera.X = Math.Min(_levelWidth - AppSettings.General.WindowWidth,
                         Camera.X + elapsed * AppSettings.Physics.BobikVelocity);

@@ -9,6 +9,7 @@ namespace Bobik
     {
         private readonly int _frameXCount;
         private readonly int _frameYCount;
+        private readonly bool _updateable;
 
         private readonly TimeSpan _timeToFrame;
 
@@ -24,6 +25,7 @@ namespace Bobik
             FrameWidth = texture.Width / _frameXCount;
             FrameHeight = texture.Height / _frameYCount;
             Origin = new Vector2(FrameWidth, FrameHeight) / 2;
+            _updateable = frameXCount * frameYCount > 1;
 
             _timeToFrame = TimeSpan.FromMilliseconds(timeToFrame);
         }
@@ -40,6 +42,8 @@ namespace Bobik
 
         public void Update(GameTime gameTime)
         {
+            if (!_updateable) return;
+
             _frameElapsed += gameTime.ElapsedGameTime;
             if (_frameElapsed < _timeToFrame) return;
 

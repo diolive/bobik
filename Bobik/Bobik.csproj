@@ -54,6 +54,7 @@
     <Compile Include="Scenes\Level1Scene.cs" />
     <Compile Include="Scenes\LevelScene.cs" />
     <Compile Include="Scenes\AtomsScene.cs" />
+    <Compile Include="Scenes\MenuScene.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="Rotating3DSubject.cs" />
     <Compile Include="SubjectState.cs" />
@@ -77,6 +78,12 @@
     <Compile Include="Subjects\Atoms\Sheet.cs" />
     <Compile Include="Subjects\Level1\Bobik.cs" />
     <Compile Include="Subject.cs" />
+    <Compile Include="Subjects\Menu\Welcome.cs" />
+    <Compile Include="Subjects\Menu\Cards.cs" />
+    <Compile Include="Subjects\Menu\Begin.cs" />
+    <Compile Include="Subjects\Menu\Zemfira.cs" />
+    <Compile Include="Subjects\Menu\BobikMain.cs" />
+    <Compile Include="Subjects\Menu\Background.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
