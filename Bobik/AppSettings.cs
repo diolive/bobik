@@ -49,5 +49,10 @@ namespace Bobik
         {
             public static Vector2 BobikInitialPosition { get; } = new Vector2(700, 430);
         }
+
+        public static class Boss1
+        {
+            public const string Answer = "585";
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 
+using Bobik.Subjects.Common;
 using Bobik.Subjects.Menu;
 
 using Microsoft.Xna.Framework;
@@ -20,7 +21,7 @@ namespace Bobik.Scenes
             ShowCursor = true;
 
             Subjects.Add(new Background());
-            Subjects.Add(new BobikMain());
+            Subjects.Add(new BobikMain { Position = new Vector2(500, 300) });
             Subjects.Add(_zemfira = new Zemfira());
             Subjects.Add(_begin = new Begin());
             Subjects.Add(_cards = new Cards());
@@ -36,10 +37,13 @@ namespace Bobik.Scenes
                 _zemfira.Show();
             }
 
-            if (mouseState.LeftButton == ButtonState.Pressed && _begin.IsHovered(mouseState.Position))
+            if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                SetScene(new Level1Scene(SetScene));
-                return;
+                if (_begin.IsHovered(mouseState.Position))
+                {
+                    SetScene(new Level1Scene(SetScene));
+                    return;
+                }
             }
 
             base.Update(gameTime);

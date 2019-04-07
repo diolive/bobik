@@ -16,7 +16,8 @@ namespace Bobik
 
         public static class Fonts
         {
-            public static SpriteFont Primary { get; } = Load("Primary");
+            public static SpriteFont Debug { get; } = Load("Debug");
+            public static SpriteFont Answers { get; } = Load("Answers");
 
             private static SpriteFont Load(string name)
             {
@@ -28,6 +29,8 @@ namespace Bobik
         {
             public static Texture2D BobikStatic { get; } = Load("bobik_static");
             public static Texture2D Cursor { get; } = Load("cursor");
+            public static Texture2D Sheet { get; } = Load("sheet");
+            public static Texture2D BobikMain { get; } = Load("bobik_main");
 
             private static Texture2D Load(string name)
             {
@@ -36,7 +39,6 @@ namespace Bobik
 
             public static class Atoms
             {
-                public static Texture2D Sheet { get; } = Load("sheet");
                 public static Texture2D AtomRavus { get; } = Load("atom_ravus");
                 public static Texture2D AtomDusya { get; } = Load("atom_dusya");
                 public static Texture2D AtomDio { get; } = Load("atom_dio");
@@ -51,7 +53,6 @@ namespace Bobik
             public static class Menu
             {
                 public static Texture2D Background { get; } = Load("background");
-                public static Texture2D BobikMain { get; } = Load("bobik_main");
                 public static Texture2D Zemfira { get; } = Load("zemfira");
                 public static Texture2D Begin { get; } = Load("begin");
                 public static Texture2D Cards { get; } = Load("cards");
@@ -91,6 +92,20 @@ namespace Bobik
                     return Enumerable.Range(1, count)
                         .Select(index => Load($"{name}_{index}"))
                         .ToArray();
+                }
+            }
+
+            public static class Boss1
+            {
+                public static Texture2D Corner { get; } = Load("corner");
+                public static Texture2D Answer { get; } = Load("answer");
+                public static Texture2D Envelope { get; } = Load("envelope");
+                public static Texture2D Left { get; } = Load("left");
+                public static Texture2D Right { get; } = Load("right");
+
+                private static Texture2D Load(string name)
+                {
+                    return Textures.Load($"Boss1/{name}");
                 }
             }
         }

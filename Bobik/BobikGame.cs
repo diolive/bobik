@@ -1,4 +1,7 @@
-﻿using Bobik.Scenes;
+﻿using System.Linq;
+using System.Security.Principal;
+
+using Bobik.Scenes;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -35,6 +38,8 @@ namespace Bobik
             _graphics.ApplyChanges();
 
             base.Initialize();
+
+            Window.TextInput += (s, e) => (_currentScene as ITextInputScene)?.InputText(e.Character, e.Key);
         }
 
         /// <summary>
@@ -88,6 +93,19 @@ namespace Bobik
 
             _spriteBatch.Begin();
             _currentScene.Draw(_spriteBatch);
+
+#if DEBUG
+            _spriteBatch.DrawString(AssetStorage.Fonts.Debug, $"Camera: {Camera.Position}", new Vector2(10, 10),
+                Color.DarkRed);
+
+            if (_currentScene.DebugSubject != null)
+            {
+                _spriteBatch.DrawString(AssetStorage.Fonts.Debug,
+                    $"{_currentScene.DebugSubject.GetType().Name}: {_currentScene.DebugSubject.Position}", new Vector2(10, 40),
+                    Color.DarkRed);
+            }
+#endif
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -96,6 +114,7 @@ namespace Bobik
         private void SetScene(Scene scene)
         {
             _currentScene = scene;
+            Camera.Reset();
         }
     }
 }

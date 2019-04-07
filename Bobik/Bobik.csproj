@@ -52,6 +52,7 @@
     <Compile Include="RepeatMode.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="Scenes\Boss1Scene.cs" />
+    <Compile Include="Scenes\ITextInputScene.cs" />
     <Compile Include="Scenes\Level1Scene.cs" />
     <Compile Include="Scenes\LevelScene.cs" />
     <Compile Include="Scenes\AtomsScene.cs" />
@@ -59,6 +60,11 @@
     <Compile Include="Sprite.cs" />
     <Compile Include="Rotating3DSubject.cs" />
     <Compile Include="SubjectState.cs" />
+    <Compile Include="Subjects\Boss1\Envelope.cs" />
+    <Compile Include="Subjects\Boss1\Answer.cs" />
+    <Compile Include="Subjects\Boss1\Corner.cs" />
+    <Compile Include="Subjects\Boss1\Left.cs" />
+    <Compile Include="Subjects\Boss1\Right.cs" />
     <Compile Include="Subjects\Level1\Platform.cs" />
     <Compile Include="Subjects\Level1\Ground.cs" />
     <Compile Include="Subjects\Level1\Back.cs" />
@@ -70,14 +76,14 @@
     <Compile Include="Subjects\Level1\Cloud.cs" />
     <Compile Include="Subjects\Atoms\Eggs.cs" />
     <Compile Include="Subjects\Level1\Sheet.cs" />
-    <Compile Include="Subjects\Atoms\Sheet.cs" />
+    <Compile Include="Subjects\Common\Sheet.cs" />
     <Compile Include="Subjects\Level1\Bobik.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="Subjects\Menu\Welcome.cs" />
     <Compile Include="Subjects\Menu\Cards.cs" />
     <Compile Include="Subjects\Menu\Begin.cs" />
     <Compile Include="Subjects\Menu\Zemfira.cs" />
-    <Compile Include="Subjects\Menu\BobikMain.cs" />
+    <Compile Include="Subjects\Common\BobikMain.cs" />
     <Compile Include="Subjects\Menu\Background.cs" />
   </ItemGroup>
   <ItemGroup>

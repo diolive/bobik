@@ -44,7 +44,7 @@ namespace Bobik.Scenes
         {
             foreach (Cloud cloud in _clouds)
             {
-                cloud.HFlipped = TheBobik.Position.X > 6000;
+                cloud.HFlipped = TheBobik.Position.X > 6620;
             }
 
             if (TheBobik.Position.X >= 8000)

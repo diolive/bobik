@@ -10,6 +10,10 @@ namespace Bobik
 {
     public class Scene
     {
+#if DEBUG
+        public Subject DebugSubject { get; set; }
+#endif
+
         public Scene(Action<Scene> setScene)
         {
             SetScene = setScene;
@@ -25,6 +29,30 @@ namespace Bobik
             {
                 subject.Update(gameTime);
             }
+
+#if DEBUG
+            KeyboardState keys = Keyboard.GetState();
+            var delta = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (keys.IsKeyDown(Keys.Left))
+            {
+                DebugSubject.Position -= new Vector2(delta, 0);
+            }
+
+            if (keys.IsKeyDown(Keys.Right))
+            {
+                DebugSubject.Position += new Vector2(delta, 0);
+            }
+
+            if (keys.IsKeyDown(Keys.Up))
+            {
+                DebugSubject.Position -= new Vector2(0, delta);
+            }
+
+            if (keys.IsKeyDown(Keys.Down))
+            {
+                DebugSubject.Position += new Vector2(0, delta);
+            }
+#endif
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

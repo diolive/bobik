@@ -9,9 +9,9 @@ namespace Bobik
     {
         private readonly int _frameXCount;
         private readonly int _frameYCount;
-        private readonly bool _updateable;
 
         private readonly TimeSpan _timeToFrame;
+        private readonly bool _updateable;
 
         private int _currentFrameX;
         private int _currentFrameY;
@@ -59,6 +59,11 @@ namespace Bobik
             {
                 _currentFrameY = 0;
             }
+        }
+
+        public static implicit operator Sprite(Texture2D texture)
+        {
+            return new Sprite(texture);
         }
     }
 }
