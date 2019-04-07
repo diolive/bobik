@@ -42,7 +42,7 @@ namespace Bobik
                     null,
                     Color.White,
                     0f,
-                    origin: new Vector2(10, 90),
+                    new Vector2(10, 90),
                     1f,
                     SpriteEffects.None,
                     0f);

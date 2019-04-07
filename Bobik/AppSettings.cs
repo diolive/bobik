@@ -16,7 +16,7 @@ namespace Bobik
 
         public static class Physics
         {
-            public const float BobikVelocity = 0.32f;
+            public const float BobikVelocity = 0.64f;
             public const float JumpVelocity = 1.0f;
             public const float Gravity = 0.003f;
         }

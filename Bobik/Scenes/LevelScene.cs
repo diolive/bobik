@@ -17,7 +17,7 @@ namespace Bobik.Scenes
             Subjects.Add(new Subjects.Level1.Bobik());
         }
 
-        private Subjects.Level1.Bobik TheBobik => Subjects.OfType<Subjects.Level1.Bobik>().Single();
+        protected Subjects.Level1.Bobik TheBobik => Subjects.OfType<Subjects.Level1.Bobik>().Single();
 
         public override void Update(GameTime gameTime)
         {
